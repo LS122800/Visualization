@@ -15,10 +15,25 @@
     </div>
     <div id="timeline_id" class="timeline_wrapper"></div>
     <script>
-        parse = false
+        parse = true
+
         if(parse) {
+            let date_arr = []
+            let event_arr = []
             d3.csv('test_data.csv', function (data) {
-                console.log(data)
+                date_arr.push(data.Date)
+                event_arr.push(data.Event)
+            }).then(function(d){
+                let list = '<ul class = "timeline">'
+                    for(i = 0; i < date_arr.length; i++) {
+                        list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + event_arr[i] + '</p>' + "</li>"
+                    }
+                list += '</ul>'
+                timeline_id.innerHTML = list
+
+                for(const data_entry of timeline_data) {
+                    data_entry.onclick = ()=> data_entry.classList.toggle('show');
+                }
             });
         } else {
             let description_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
