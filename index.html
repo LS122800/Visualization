@@ -15,42 +15,35 @@
     </div>
     <div id="timeline_id" class="timeline_wrapper"></div>
     <script>
-        parse = true
-
-        if(parse) {
-            let date_arr = []
-            let event_arr = []
-            d3.csv('data.csv', function (data) {
-                date_arr.push(data.Date)
-                event_arr.push(data.Event)
-            }).then(function(d){
-                console.log(date_arr.length)
-                let list = '<ul class = "timeline">'
-                    for(i = 0; i < date_arr.length; i++) {
-                        list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + event_arr[i] + '</p>' + "</li>"
-                    }
-                list += '</ul>'
-                timeline_id.innerHTML = list
-
-                for(const data_entry of timeline_data) {
-                    data_entry.onclick = ()=> data_entry.classList.toggle('show');
-                }
-            });
-        } else {
-            let description_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            let date = "Jan 1, 1880"
+        let date_arr = []
+        let event_arr = []
+        d3.csv('data.csv', function (data) {
+            date_arr.push(data.Date)
+            event_arr.push(data.Event)
+        }).then(function(d){
+            console.log(date_arr.length)
             let list = '<ul class = "timeline">'
-            let date_arr = [date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date]
-            let description_arr = [description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text, description_text]
                 for(i = 0; i < date_arr.length; i++) {
-                    list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + description_arr[i] + '</p>' + "</li>"
+                    console.log(event_arr[i])
+                    list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + event_arr[i] + '</p>' + "</li>"
                 }
             list += '</ul>'
             timeline_id.innerHTML = list
-        }
+
+            for(const data_entry of timeline_data) {
+                data_entry.onclick = ()=> data_entry.classList.toggle('show');
+            }
+        }).then(function(clicky) {
+            const timeline_data = document.querySelectorAll('.timeline li .data');
+
+            for(const data_entry of timeline_data) {
+                data_entry.onclick = ()=> data_entry.classList.toggle('show');
+            }
+        });
     </script>
 
     <script>
+        //I have absolutely no idea why we need to repeat this code here, but if we remove it it breaks so don't touch it
         const timeline_data = document.querySelectorAll('.timeline li .data');
 
         for(const data_entry of timeline_data) {
