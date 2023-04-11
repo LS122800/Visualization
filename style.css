@@ -18,7 +18,7 @@
     height:  88vh;
 
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 
     overflow-x: auto;

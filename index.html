@@ -20,10 +20,11 @@
         if(parse) {
             let date_arr = []
             let event_arr = []
-            d3.csv('test_data.csv', function (data) {
+            d3.csv('data.csv', function (data) {
                 date_arr.push(data.Date)
                 event_arr.push(data.Event)
             }).then(function(d){
+                console.log(date_arr.length)
                 let list = '<ul class = "timeline">'
                     for(i = 0; i < date_arr.length; i++) {
                         list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + event_arr[i] + '</p>' + "</li>"
