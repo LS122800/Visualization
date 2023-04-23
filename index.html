@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Timeline Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,155 +13,37 @@
         <h3 class = "header"> George Eliot Archive Timeline </h3>
         <input type="text" placeholder="Search..">
     </div>
-    <div class="timeline_wrapper">
-        <ul class="timeline">
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-            <li data-date ="Jan 1, 1880">
-                <span class = "title">Sample Title</span>
-                <div class = "data">
-                    <h3>Sample Heading</h3>
-                    <small>Jan 1, 1880</small>
-                    <p>"Funeral at Highgate Cemetery. Cross remarks, "Her spirit joined that choir invisible 'whose music is the gladness of this world'" (Cross 3: 439). 
-                        Engraves "Mary Ann Cross" and "Of those immortal dead who live again in minds made better by their presence" on her cemetery stone."
-                    </p>
-                    <span class = 'textlink'>Click For More Information</span>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <div id="timeline_id" class="timeline_wrapper"></div>
+    <script>
+        let date_arr = []
+        let event_arr = []
+        d3.csv('data.csv', function (data) {
+            date_arr.push(data.Date)
+            event_arr.push(data.Event)
+        }).then(function(d){
+            console.log(date_arr.length)
+            let list = '<ul class = "timeline">'
+                for(i = 0; i < date_arr.length; i++) {
+                    console.log(event_arr[i])
+                    list += '<li data-date = "' + date_arr[i] + '"><div class = "data"><small>' + date_arr[i] + '</small><p>' + event_arr[i] + '</p>' + "</li>"
+                }
+            list += '</ul>'
+            timeline_id.innerHTML = list
+
+            for(const data_entry of timeline_data) {
+                data_entry.onclick = ()=> data_entry.classList.toggle('show');
+            }
+        }).then(function(clicky) {
+            const timeline_data = document.querySelectorAll('.timeline li .data');
+
+            for(const data_entry of timeline_data) {
+                data_entry.onclick = ()=> data_entry.classList.toggle('show');
+            }
+        });
+    </script>
 
     <script>
+        //I have absolutely no idea why we need to repeat this code here, but if we remove it it breaks so don't touch it
         const timeline_data = document.querySelectorAll('.timeline li .data');
 
         for(const data_entry of timeline_data) {
