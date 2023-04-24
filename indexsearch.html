@@ -23,16 +23,38 @@
 
     <script>
       let eventData = [];
+      let collectionData = [];
+      let dateToURLDict = {};
 
       d3.csv("data.csv", function (data) {
         eventData.push({ date: data.Date, event: data.Event });
-      }).then(function () {
-        let uniqueYears = [
+      }).then(function() {
+        d3.csv("JohnCrossCollection.csv", function (data) {
+          collectionData.push({ title: data.Title, link: data.ItemURI})
+        }).then(function() {
+          let uniqueYears = [
           ...new Set(eventData.map((e) => e.date.split("-")[0])),
-        ];
-        createTimeline(uniqueYears);
-        attachYearClickEvent();
+          ];
+          createDateToLinkHash(collectionData)
+          createTimeline(uniqueYears);
+          attachYearClickEvent();
+        });
       });
+
+      function parseCollectionCSV() {
+        d3.csv("data.csv", function (data) {
+          collectionData.push({ title: data.Title, link: data.ItemURI})
+        });
+      }
+
+      function createDateToLinkHash(collection) {
+        for (let i = 0; i < collection.length; i++) {
+          title = collection[i].title;
+          link = collection[i].link
+          date = title.split(",")[1].trim();
+          dateToURLDict[date] = link
+        } 
+      }
 
       function searchTimeline(searchText) {
         if (searchText === "") {
@@ -72,7 +94,18 @@
         let list = '<ul class="timeline">';
         for (let i = 0; i < dates.length; i++) {
           let eventDescription = events ? events[i] : "";
-          list +=
+          if(dateToURLDict[dates[i]] !== undefined) {
+            url = dateToURLDict[dates[i]];
+            list +=
+            '<li data-date="' +
+            dates[i] +
+            '"><div class="data"><small>' +
+            dates[i] +
+            "</small><p>" +
+            eventDescription + 
+            "<a href = " + url + "> Read More!</p></li>";
+          } else {
+            list +=
             '<li data-date="' +
             dates[i] +
             '"><div class="data"><small>' +
@@ -80,6 +113,7 @@
             "</small><p>" +
             eventDescription +
             "</p></li>";
+          }
         }
         list += "</ul>";
         timeline_id.innerHTML = list;
@@ -137,12 +171,6 @@
         createTimeline(uniqueYears);
         attachYearClickEvent();
         document.getElementById("back_btn").style.display = "none";
-      };
-
-      document.getElementById("search_btn2").onclick = () => {
-          //searchTimeLine()
-
-
       };
     </script>
   </body>
