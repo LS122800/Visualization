@@ -16,16 +16,6 @@
 
     </div>
     <div class = 'scrollable' id="results">
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
-      <p>he</p>
 
     </div>
     <button id="back_btn" style="display: none">Back to Years</button>
@@ -50,6 +40,7 @@
             ...new Set(eventData.map((e) => e.date.split("-")[0])),
           ];
           createTimeline(uniqueYears);
+          createTextResults([], []);
           attachYearClickEvent();
         } else {
           let filteredEvents = eventData.filter(
