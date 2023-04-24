@@ -18,6 +18,30 @@
     padding: 1.4rem 0;
     background-color: var(--blanchedalmond);
   }
+
+  button {
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+    .scrollable {
+    position:relative;
+      display: block;
+  margin-left: 0;
+  margin-right: auto;
+    width: 400px;
+  height: 250px;
+  text-color:black;
+  font-size: 15;
+  overflow: auto;
+  background: #D3D3D3;
+  border-style: solid;
+  border-color: black;
+  overflow: auto;
+  color: #fff;
+    }
   
   .page_header input[type=text] {
     float: left;
@@ -142,4 +166,5 @@
     padding: .4rem .6rem;
     border-radius: 1rem;
   }
+
   

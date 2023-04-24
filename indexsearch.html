@@ -11,22 +11,50 @@
   <body>
     <div class="page_header">
       <h3 class="header">George Eliot Archive Timeline</h3>
-      <input type="text" placeholder="Search.." />
+      <input id="search" type="text" placeholder="Search.." />
+      <button class='button' id="search_btn2" >Search</button>
+
+    </div>
+    <div class = 'scrollable' id="results">
+
     </div>
     <button id="back_btn" style="display: none">Back to Years</button>
     <div id="timeline_id" class="timeline_wrapper"></div>
+
     <script>
       let eventData = [];
+      let collectionData = [];
+      let dateToURLDict = {};
 
       d3.csv("data.csv", function (data) {
         eventData.push({ date: data.Date, event: data.Event });
-      }).then(function () {
-        let uniqueYears = [
+      }).then(function() {
+        d3.csv("JohnCrossCollection.csv", function (data) {
+          collectionData.push({ title: data.Title, link: data.ItemURI})
+        }).then(function() {
+          let uniqueYears = [
           ...new Set(eventData.map((e) => e.date.split("-")[0])),
-        ];
-        createTimeline(uniqueYears);
-        attachYearClickEvent();
+          ];
+          createDateToLinkHash(collectionData)
+          createTimeline(uniqueYears);
+          attachYearClickEvent();
+        });
       });
+
+      function parseCollectionCSV() {
+        d3.csv("data.csv", function (data) {
+          collectionData.push({ title: data.Title, link: data.ItemURI})
+        });
+      }
+
+      function createDateToLinkHash(collection) {
+        for (let i = 0; i < collection.length; i++) {
+          title = collection[i].title;
+          link = collection[i].link
+          date = title.split(",")[1].trim();
+          dateToURLDict[date] = link
+        } 
+      }
 
       function searchTimeline(searchText) {
         if (searchText === "") {
@@ -34,6 +62,7 @@
             ...new Set(eventData.map((e) => e.date.split("-")[0])),
           ];
           createTimeline(uniqueYears);
+          createTextResults([], []);
           attachYearClickEvent();
         } else {
           let filteredEvents = eventData.filter(
@@ -45,8 +74,14 @@
             filteredEvents.map((e) => e.date),
             filteredEvents.map((e) => e.event)
           );
+          createTextResults(
+            filteredEvents.map((e) => e.date),
+            filteredEvents.map((e) => e.event)
+
+          );
           attachYearClickEvent();
         }
+
       }
 
       document
@@ -59,7 +94,18 @@
         let list = '<ul class="timeline">';
         for (let i = 0; i < dates.length; i++) {
           let eventDescription = events ? events[i] : "";
-          list +=
+          if(dateToURLDict[dates[i]] !== undefined) {
+            url = dateToURLDict[dates[i]];
+            list +=
+            '<li data-date="' +
+            dates[i] +
+            '"><div class="data"><small>' +
+            dates[i] +
+            "</small><p>" +
+            eventDescription + 
+            "<a href = " + url + "> Read More!</p></li>";
+          } else {
+            list +=
             '<li data-date="' +
             dates[i] +
             '"><div class="data"><small>' +
@@ -67,10 +113,28 @@
             "</small><p>" +
             eventDescription +
             "</p></li>";
+          }
         }
         list += "</ul>";
         timeline_id.innerHTML = list;
       }
+
+      function createTextResults(dates, events) {
+        let list = '<ul class="timeline">';
+        for (let i = 0; i < dates.length; i++) {
+          let eventDescription = events ? events[i] : "";
+          list +=
+            dates[i] +
+            eventDescription +
+            "<br>" + "<br>";
+
+
+        }
+        list += "</ul>";
+
+        results.innerHTML = list;
+      }
+
 
       function filterEventsByYear(year) {
         return eventData.filter((e) => e.date.startsWith(year));
