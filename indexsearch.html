@@ -11,10 +11,26 @@
   <body>
     <div class="page_header">
       <h3 class="header">George Eliot Archive Timeline</h3>
-      <input type="text" placeholder="Search.." />
+      <input id="search" type="text" placeholder="Search.." />
+      <button class='button' id="search_btn2" >Search</button>
+
+    </div>
+    <div class = 'scrollable' id="results">
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+      <p>he</p>
+
     </div>
     <button id="back_btn" style="display: none">Back to Years</button>
     <div id="timeline_id" class="timeline_wrapper"></div>
+
     <script>
       let eventData = [];
 
@@ -45,8 +61,14 @@
             filteredEvents.map((e) => e.date),
             filteredEvents.map((e) => e.event)
           );
+          createTextResults(
+            filteredEvents.map((e) => e.date),
+            filteredEvents.map((e) => e.event)
+
+          );
           attachYearClickEvent();
         }
+
       }
 
       document
@@ -71,6 +93,23 @@
         list += "</ul>";
         timeline_id.innerHTML = list;
       }
+
+      function createTextResults(dates, events) {
+        let list = '<ul class="timeline">';
+        for (let i = 0; i < dates.length; i++) {
+          let eventDescription = events ? events[i] : "";
+          list +=
+            dates[i] +
+            eventDescription +
+            "<br>" + "<br>";
+
+
+        }
+        list += "</ul>";
+
+        results.innerHTML = list;
+      }
+
 
       function filterEventsByYear(year) {
         return eventData.filter((e) => e.date.startsWith(year));
@@ -107,6 +146,12 @@
         createTimeline(uniqueYears);
         attachYearClickEvent();
         document.getElementById("back_btn").style.display = "none";
+      };
+
+      document.getElementById("search_btn2").onclick = () => {
+          //searchTimeLine()
+
+
       };
     </script>
   </body>
